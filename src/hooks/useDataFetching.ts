@@ -15,7 +15,7 @@ export const useDataFetching = () => {
     const loadLazyData = useCallback(async (state: LazyState) => {
         setLoading(true);
         const { artworks: fetchedArtworks, totalRecords: fetchedTotalRecords } = await fetchArtworks(state);
-        
+
         setArtworks(fetchedArtworks);
         setTotalRecords(fetchedTotalRecords);
         setLoading(false);

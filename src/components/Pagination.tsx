@@ -1,4 +1,3 @@
-import React from 'react';
 import type { LazyState } from '../types';
 
 interface PaginationProps {

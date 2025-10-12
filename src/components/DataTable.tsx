@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Artwork, LazyState } from '../types';
 import { Pagination } from './Pagination';
 
@@ -14,7 +13,6 @@ interface DataTableProps {
     onRowUnselect: (artwork: Artwork) => void;
     onSelectAllChange: (checked: boolean) => void;
 }
-
 
 export const DataTable: React.FC<DataTableProps> = ({
     artworks,
@@ -39,8 +37,8 @@ export const DataTable: React.FC<DataTableProps> = ({
 
     return (
         <div className="mt-8 shadow-2xl rounded-xl overflow-hidden bg-white dark:bg-gray-800 relative border border-gray-200 dark:border-gray-700">
-            <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="w-full overflow-x-hidden">
+                <table className="table-fixed w-full border-collapse">
                     <thead className="bg-indigo-50 dark:bg-indigo-900/50">
                         <tr>
                             <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider w-12">
@@ -52,14 +50,12 @@ export const DataTable: React.FC<DataTableProps> = ({
                                     disabled={loading}
                                 />
                             </th>
-                            {['Title', 'Artist', 'Origin', 'Inscriptions', 'Start Date', 'End Date'].map(header => (
-                                <th 
-                                    key={header} 
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider cursor-default"
-                                >
-                                    {header}
-                                </th>
-                            ))}
+                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Title</th>
+                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Artist</th>
+                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Origin</th>
+                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Inscriptions</th>
+                            <th className="w-1/10 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Start Date</th>
+                            <th className="w-1/10 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">End Date</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -71,7 +67,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                                     className={`hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors cursor-pointer ${isSelected ? 'bg-indigo-100 dark:bg-indigo-900/30' : ''}`}
                                     onClick={() => handleRowClick(artwork)}
                                 >
-                                    <td className="px-4 py-4 whitespace-nowrap w-12 text-center">
+                                    <td className="px-4 py-4 text-center">
                                         <input
                                             type="checkbox"
                                             className="form-checkbox h-4 w-4 text-indigo-600 rounded pointer-events-none"
@@ -79,24 +75,12 @@ export const DataTable: React.FC<DataTableProps> = ({
                                             readOnly 
                                         />
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate max-w-xs">
-                                        {artwork.title}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                                        {artwork.artist_display}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                                        {artwork.place_of_origin}
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs overflow-hidden truncate">
-                                        {artwork.inscriptions || 'N/A'}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                                        {artwork.date_start}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                                        {artwork.date_end}
-                                    </td>
+                                    <td className="px-6 py-4 text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">{artwork.title}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.artist_display}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.place_of_origin}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{artwork.inscriptions || 'N/A'}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.date_start}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.date_end}</td>
                                 </tr>
                             );
                         })}
