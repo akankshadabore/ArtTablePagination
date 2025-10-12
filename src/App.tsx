@@ -26,11 +26,8 @@ const App: React.FC = () => {
         <div className="min-h-screen bg-gray-50 p-4 sm:p-6 dark:bg-gray-900 font-sans">
             <header className="mb-8 text-center">
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-indigo-800 dark:text-indigo-400">
-                    Artworks Curator
+                    GrowMeOrganic Private Limited
                 </h1>
-                <p className="text-md sm:text-lg text-gray-600 dark:text-gray-400 mt-2">
-                    Select artworks to curate and review their information.
-                </p>
             </header>
 
             <div className="max-w-7xl mx-auto">
