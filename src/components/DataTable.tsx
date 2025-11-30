@@ -35,27 +35,28 @@ export const DataTable: React.FC<DataTableProps> = ({
         }
     };
 
+    
     return (
-        <div className="mt-8 shadow-2xl rounded-xl overflow-hidden bg-white dark:bg-gray-800 relative border border-gray-200 dark:border-gray-700">
-            <div className="w-full overflow-x-hidden">
-                <table className="table-fixed w-full border-collapse">
+        <div className="mt-4 sm:mt-8 shadow-2xl rounded-xl overflow-hidden bg-white dark:bg-gray-800 relative border border-gray-200 dark:border-gray-700">
+            <div className="w-full overflow-x-auto">
+                <table className="w-full border-collapse min-w-[640px]">
                     <thead className="bg-indigo-50 dark:bg-indigo-900/50">
                         <tr>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider w-12">
+                            <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider w-10 sm:w-12">
                                 <input
                                     type="checkbox"
-                                    className="form-checkbox h-4 w-4 text-indigo-600 rounded"
+                                    className="form-checkbox h-3 w-3 sm:h-4 sm:w-4 text-indigo-600 rounded"
                                     checked={allRowsSelected}
                                     onChange={(e) => onSelectAllChange(e.target.checked)}
                                     disabled={loading}
                                 />
                             </th>
-                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Title</th>
-                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Artist</th>
-                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Origin</th>
-                            <th className="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Inscriptions</th>
-                            <th className="w-1/10 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Start Date</th>
-                            <th className="w-1/10 px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">End Date</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Title</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Artist</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Origin</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Inscriptions</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Start Date</th>
+                            <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">End Date</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -67,26 +68,26 @@ export const DataTable: React.FC<DataTableProps> = ({
                                     className={`hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors cursor-pointer ${isSelected ? 'bg-indigo-100 dark:bg-indigo-900/30' : ''}`}
                                     onClick={() => handleRowClick(artwork)}
                                 >
-                                    <td className="px-4 py-4 text-center">
+                                    <td className="px-2 sm:px-4 py-3 sm:py-4 text-center">
                                         <input
                                             type="checkbox"
-                                            className="form-checkbox h-4 w-4 text-indigo-600 rounded pointer-events-none"
+                                            className="form-checkbox h-3 w-3 sm:h-4 sm:w-4 text-indigo-600 rounded pointer-events-none"
                                             checked={isSelected}
-                                            readOnly 
+                                            readOnly
                                         />
                                     </td>
-                                    <td className="px-6 py-4 text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">{artwork.title}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.artist_display}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.place_of_origin}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{artwork.inscriptions || 'N/A'}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.date_start}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{artwork.date_end}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate max-w-[150px] sm:max-w-none">{artwork.title}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-900 dark:text-gray-300 truncate max-w-[120px] sm:max-w-none">{artwork.artist_display}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-900 dark:text-gray-300 truncate max-w-[100px] sm:max-w-none">{artwork.place_of_origin}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate max-w-[120px] sm:max-w-none">{artwork.inscriptions || 'N/A'}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-900 dark:text-gray-300">{artwork.date_start}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-900 dark:text-gray-300">{artwork.date_end}</td>
                                 </tr>
                             );
                         })}
                         {!loading && artworks.length === 0 && (
                             <tr>
-                                <td colSpan={7} className="text-center py-10 text-gray-500 dark:text-gray-400">
+                                <td colSpan={7} className="text-center py-8 sm:py-10 text-sm sm:text-base text-gray-500 dark:text-gray-400">
                                     No artworks found.
                                 </td>
                             </tr>
@@ -99,12 +100,12 @@ export const DataTable: React.FC<DataTableProps> = ({
                 lazyState={lazyState} 
                 totalRecords={totalRecords} 
                 onPage={onPage} 
-                loading={loading} 
+                loading={loading}
             />
             
             {loading && (
                 <div className="absolute inset-0 bg-white bg-opacity-70 dark:bg-gray-900 dark:bg-opacity-70 flex justify-center items-center z-20 rounded-xl">
-                    <div className="h-16 w-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="h-12 w-12 sm:h-16 sm:w-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
             )}
         </div>

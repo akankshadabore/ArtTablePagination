@@ -58,15 +58,15 @@ export const Pagination: React.FC<PaginationProps> = ({
 
     const rowsPerPageOptions = [10, 20, 50];
 
-    return (
-        <div className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-800 rounded-b-xl border-t dark:border-gray-700 flex-wrap gap-3">
-            <div className="text-sm text-gray-700 dark:text-gray-300 min-w-[200px]">
-                Showing {first + 1} to {Math.min(first + rows, totalRecords)} of {totalRecords} entries
+    return  (
+        <div className="flex flex-col sm:flex-row justify-between items-center p-3 sm:p-4 bg-gray-100 dark:bg-gray-800 rounded-b-xl border-t dark:border-gray-700 gap-3">
+            <div className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 text-center sm:text-left order-1">
+                Showing {first + 1} to {Math.min(first + rows, totalRecords)} of {totalRecords}
             </div>
 
-            <div className="flex items-center space-x-2 flex-wrap">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:space-x-2 order-2 w-full sm:w-auto">
                 <select
-                    className="p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm shadow-md"
+                    className="w-full sm:w-auto p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white text-xs sm:text-sm shadow-md"
                     value={rows}
                     onChange={(e) => onPage({ first: 0, rows: Number(e.target.value) })}
                     disabled={loading}
@@ -76,25 +76,27 @@ export const Pagination: React.FC<PaginationProps> = ({
                     ))}
                 </select>
 
-                <button
-                    className="px-3 py-1 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors duration-150 shadow-md disabled:opacity-50"
-                    onClick={() => changePage(currentPage - 1)}
-                    disabled={!hasPrev || loading}
-                >
-                    &lt; Prev
-                </button>
+                <div className="flex items-center space-x-1 sm:space-x-2">
+                    <button
+                        className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors duration-150 shadow-md disabled:opacity-50"
+                        onClick={() => changePage(currentPage - 1)}
+                        disabled={!hasPrev || loading}
+                    >
+                        &lt; Prev
+                    </button>
 
-                <div className="flex space-x-1">
-                    {pageLinks}
+                    <div className="flex space-x-0.5 sm:space-x-1">
+                        {pageLinks}
+                    </div>
+
+                    <button
+                        className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors duration-150 shadow-md disabled:opacity-50"
+                        onClick={() => changePage(currentPage + 1)}
+                        disabled={!hasNext || loading}
+                    >
+                        Next &gt;
+                    </button>
                 </div>
-
-                <button
-                    className="px-3 py-1 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors duration-150 shadow-md disabled:opacity-50"
-                    onClick={() => changePage(currentPage + 1)}
-                    disabled={!hasNext || loading}
-                >
-                    Next &gt;
-                </button>
             </div>
         </div>
     );
